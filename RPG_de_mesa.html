@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de RPG de mesa</title>
+</head>
+
+<body>
+    <h1>RPG de mesa</h1>
+    <p>Bem-vindo ao RPG do ZEE. Você é um(a) aventureiro(a) prestes a embarcar em uma jorna épica. Suas escolhas
+        moldarão seu destino.</p>
+    </p>
+    <h2>Instruções</h2>
+    <p>Para jogar, leia as situações e escolha as opções que achar melhor.</p>
+    <div id="game-container">
+        <button onclick="startGame()">Começar</button>
+    </div>
+    <script>
+        function startGame() {
+            const gameContainer = document.getElementById("game-container");
+            gameContainer.innerHTML = `
+            <p>Você está em uma floresta misteriosa. À sua frente, há um caminho à esquerda e outro à direita. Qual caminho você escolhe?</p>
+            <button onclick="choosePath('esquerda')">Esquerda</button>
+            <button onclick="choosePath('direita')">Direita</button>
+            `;
+        }
+        function choosePath(path) {
+            const gameContainer = document.getElementById("game-container");
+            if (path == "esquerda") {
+                gameContainer.innerHTML = `
+                <p>Você segue pelo caminho da esquerda e encontra uma caverna escura. Deseja entrar na caverna ou voltar ao cruzamento?</p>
+                <button onclick="exploreCave()">Entrar na caverna</button>
+                <button onclick="startGame()">Voltar para o cruzamento?</button>
+                `;
+            } else if (path == 'direita') {
+                gameContainer.innerHTML = `
+                <p>Você segue pelo caminho da direita e se depara com uma ponte. Deseja atravessar a ponte ou voltar ao cruzamento?</p>
+                <button onclick="crossBridge()">Atravessar ponte</button>
+                <button onclick="startGame()">Voltar para o cruzamento?</button>
+                `;
+            }
+        }
+        function exploreCave() {
+            const gameContainer = document.getElementById("game-container");
+            const randomNumber = Math.random();
+            if (randomNumber < 0.5) {
+                gameContainer.innerHTML = `<p>Você encontrou um tesouro brilhante! Parabéns, você venceu a aventura!</p>`;
+            } else {
+                gameContainer.innerHTML = `<p>Infelizmente, a caverna está cheia de monstros e você não conseguiu sobreviver. Fim do jogo.</p>`;
+            }
+        }
+        function crossBridge() {
+            const gameContainer = document.getElementById("game-container");
+            const randomNumber = Math.random();
+            if (randomNumber < 0.3) {
+                gameContainer.innerHTML = `<p>A ponte desaba sobre seus pés. Você não consegue sobreviver à queda. Fim do jogo.</p>`;
+            } else {
+                gameContainer.innerHTML = `<p>Parabéns! Você atravessa a ponte com sucesso e segue em frente na sua jornada.</p>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
